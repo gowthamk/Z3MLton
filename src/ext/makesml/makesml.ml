@@ -9,7 +9,8 @@ let typtbl = H.create 117
 let _ = 
   H.add typtbl "int" "int";
   H.add typtbl "void" "unit";
-  H.add typtbl "float" "double";
+  H.add typtbl "float" "real";
+  H.add typtbl "Z3_string" "string";
   H.add typtbl "ptr" "MLton.Pointer.t"
 
 type varinfo = {mltyp : string; args : string}
@@ -18,9 +19,9 @@ let vartbl = H.create 1009
 
 let mkFunTy (argTy,resTy) = argTy ^ " -> " ^ resTy
 
-let mkTupleTy tys = "("^(match tys with 
-  | [] -> "" 
-  | x::xs -> List.fold_left (fun acc ty ->
+let mkTupleTy tys = match tys with 
+  | [] -> H.find typtbl "void"
+  | x::xs -> "("^(List.fold_left (fun acc ty ->
       acc^" * "^ty) x xs)^")"
 
 let rec maptype typ = match typ with
@@ -43,12 +44,16 @@ let rec maptype typ = match typ with
   | TComp _ | TEnum _ | TBuiltin_va_list _ -> 
       (E.log "Unknown type : %a\n" d_type typ; "Tunknown")
 
+let sanitize name = match name with
+  | "val" | "ref" | "let" | "in" | "end" | "fun" -> name^"'"
+  | _ -> name
+
 let mapargs typ = match typ with
   | TFun (_,None,_,_) -> "()"
   | TFun (_,Some argTys,_,_) -> "("^(match argTys with 
       [] -> ""
     | (x,_,_)::xs -> List.fold_left (fun acc (a,b,c) -> 
-        acc^","^a) x xs)^")"
+        acc^","^(sanitize a)) (sanitize x) xs)^")"
 
 let globalFolder x glob = match glob with
   | GVarDecl ({vname=vname;vtype=vtype},_) -> 
@@ -94,10 +99,12 @@ let makeStructDoc () =
     then myconcat [text ("type "^mlTy^" = MLton.Pointer.t");
         line; doc]
     else doc) typtbl nil in
+  let handl = text "val hndl = DynLink.dlopen 
+    (\"libz3.dylib\", DynLink.RTLD_LAZY);" in
   let fundecs = H.fold (fun name {mltyp=typ;args=args} doc ->
     myconcat [doc;line;instantiateFunDec (name,args,typ)]) 
     vartbl nil in
-  let decs = myconcat [typedecs; line; fundecs] in
+  let decs = myconcat [typedecs; line; handl; line; fundecs] in
   let footer = text "end" in
   let doc = myconcat [header; indent 2 decs; footer] in
   let outf = open_out "z3_ffi.sml" in

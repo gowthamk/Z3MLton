@@ -39,7 +39,6 @@ sig
   type z3_ast
   type z3_param_kind
   type z3_decl_kind
-  type z3_string
   type z3_ast_print_mode
   type z3_search_failure
   type z3_literals
@@ -49,17 +48,17 @@ sig
   val Z3_ast_vector_get : (z3_context * z3_ast_vector * int) -> z3_ast
   val Z3_mk_real2int : (z3_context * z3_ast) -> z3_ast
   val Z3_mk_bvadd_no_underflow : (z3_context * z3_ast * z3_ast) -> z3_ast
-  val Z3_statistics_to_string : (z3_context) -> z3_string
+  val Z3_statistics_to_string : (z3_context) -> string
   val Z3_solver_check_assumptions : (z3_context * z3_solver * int * MLton.Pointer.t) -> z3_lbool
   val Z3_solver_get_unsat_core : (z3_context * z3_solver) -> z3_ast_vector
-  val Z3_func_decl_to_string : (z3_context * z3_func_decl) -> z3_string
+  val Z3_func_decl_to_string : (z3_context * z3_func_decl) -> string
   val Z3_query_constructor : (z3_context * z3_constructor * int * MLton.Pointer.t * MLton.Pointer.t * MLton.Pointer.t) -> unit
   val Z3_mk_injective_function : (z3_context * z3_symbol * int * MLton.Pointer.t * z3_sort) -> z3_func_decl
   val Z3_model_get_num_sorts : (z3_context * z3_model) -> int
-  val Z3_get_error_msg_ex : (z3_context * z3_error_code) -> z3_string
+  val Z3_get_error_msg_ex : (z3_context * z3_error_code) -> string
   val Z3_mk_bvsgt : (z3_context * z3_ast * z3_ast) -> z3_ast
   val Z3_get_smtlib_num_decls : (z3_context) -> int
-  val Z3_mk_theory : (z3_context * z3_string * z3_theory_data) -> z3_theory
+  val Z3_mk_theory : (z3_context * string * z3_theory_data) -> z3_theory
   val Z3_mk_bvsle : (z3_context * z3_ast * z3_ast) -> z3_ast
   val Z3_get_model_func_entry_arg : (z3_context * z3_model * int * int * int) -> z3_ast
   val Z3_mk_bvsge : (z3_context * z3_ast * z3_ast) -> z3_ast
@@ -70,17 +69,17 @@ sig
   val Z3_eval : (z3_context * z3_model * z3_ast * MLton.Pointer.t) -> z3_bool
   val Z3_probe_ge : (z3_context * z3_probe * z3_probe) -> z3_probe
   val Z3_mk_bvsdiv_no_overflow : (z3_context * z3_ast * z3_ast) -> z3_ast
-  val Z3_simplify_get_help : (z3_context) -> z3_string
+  val Z3_simplify_get_help : (z3_context) -> string
   val Z3_set_new_relevant_callback : (z3_theory * MLton.Pointer.t) -> unit
-  val Z3_fixedpoint_get_reason_unknown : (z3_context * z3_fixedpoint) -> z3_string
+  val Z3_fixedpoint_get_reason_unknown : (z3_context * z3_fixedpoint) -> string
   val Z3_interrupt : (z3_context) -> unit
   val Z3_fixedpoint_add_fact : (z3_context * z3_fixedpoint * z3_func_decl * int * MLton.Pointer.t) -> unit
   val Z3_set_restart_callback : (z3_theory * MLton.Pointer.t) -> unit
   val Z3_tactic_repeat : (z3_context * z3_tactic * int) -> z3_tactic
   val Z3_get_num_scopes : (z3_context) -> int
   val Z3_get_decl_sort_parameter : (z3_context * z3_func_decl * int) -> z3_sort
-  val Z3_get_decl_rational_parameter : (z3_context * z3_func_decl * int) -> z3_string
-  val Z3_solver_get_reason_unknown : (z3_context * z3_solver) -> z3_string
+  val Z3_get_decl_rational_parameter : (z3_context * z3_func_decl * int) -> string
+  val Z3_solver_get_reason_unknown : (z3_context * z3_solver) -> string
   val Z3_probe_eq : (z3_context * z3_probe * z3_probe) -> z3_probe
   val Z3_mk_forall : (z3_context * int * int * MLton.Pointer.t * int * MLton.Pointer.t * MLton.Pointer.t * z3_ast) -> z3_ast
   val Z3_mk_bvadd_no_overflow : (z3_context * z3_ast * z3_ast * z3_bool) -> z3_ast
@@ -93,10 +92,10 @@ sig
   val Z3_get_literal : (z3_context * z3_literals * int) -> z3_ast
   val Z3_set_final_check_callback : (z3_theory * MLton.Pointer.t) -> unit
   val Z3_probe_and : (z3_context * z3_probe * z3_probe) -> z3_probe
-  val Z3_apply_result_to_string : (z3_context * z3_apply_result) -> z3_string
+  val Z3_apply_result_to_string : (z3_context * z3_apply_result) -> string
   val Z3_mk_bvnor : (z3_context * z3_ast * z3_ast) -> z3_ast
   val Z3_mk_rotate_right : (z3_context * int * z3_ast) -> z3_ast
-  val Z3_solver_get_help : (z3_context * z3_solver) -> z3_string
+  val Z3_solver_get_help : (z3_context * z3_solver) -> string
   val Z3_mk_fixedpoint : (z3_context) -> z3_fixedpoint
   val Z3_mk_sub : (z3_context * int * MLton.Pointer.t) -> z3_ast
   val Z3_mk_bvashr : (z3_context * z3_ast * z3_ast) -> z3_ast
@@ -108,7 +107,7 @@ sig
   val Z3_get_quantifier_pattern_ast : (z3_context * z3_ast * int) -> z3_pattern
   val Z3_tactic_try_for : (z3_context * z3_tactic * int) -> z3_tactic
   val Z3_mk_bvor : (z3_context * z3_ast * z3_ast) -> z3_ast
-  val Z3_tactic_get_help : (z3_context * z3_tactic) -> z3_string
+  val Z3_tactic_get_help : (z3_context * z3_tactic) -> string
   val Z3_mk_mod : (z3_context * z3_ast * z3_ast) -> z3_ast
   val Z3_stats_inc_ref : (z3_context * z3_stats) -> unit
   val Z3_mk_int64 : (z3_context * int * z3_sort) -> z3_ast
@@ -118,7 +117,7 @@ sig
   val Z3_params_dec_ref : (z3_context * z3_params) -> unit
   val Z3_ast_map_inc_ref : (z3_context * z3_ast_map) -> unit
   val Z3_ast_vector_dec_ref : (z3_context * z3_ast_vector) -> unit
-  val Z3_open_log : (z3_string) -> z3_bool
+  val Z3_open_log : (string) -> z3_bool
   val Z3_get_model_func_entry_value : (z3_context * z3_model * int * int) -> z3_ast
   val Z3_mk_map : (z3_context * z3_func_decl * int * MLton.Pointer.t) -> z3_ast
   val Z3_get_smtlib_num_formulas : (z3_context) -> int
@@ -133,9 +132,9 @@ sig
   val Z3_mk_bvadd : (z3_context * z3_ast * z3_ast) -> z3_ast
   val Z3_fixedpoint_register_relation : (z3_context * z3_fixedpoint * z3_func_decl) -> unit
   val Z3_get_tuple_sort_mk_decl : (z3_context * z3_sort) -> z3_func_decl
-  val Z3_goal_to_string : (z3_context * z3_goal) -> z3_string
+  val Z3_goal_to_string : (z3_context * z3_goal) -> string
   val Z3_mk_div : (z3_context * z3_ast * z3_ast) -> z3_ast
-  val Z3_get_smtlib_error : (z3_context) -> z3_string
+  val Z3_get_smtlib_error : (z3_context) -> string
   val Z3_theory_get_ext_data : (z3_theory) -> z3_theory_data
   val Z3_mk_context_rc : (z3_config) -> z3_context
   val Z3_mk_xor : (z3_context * z3_ast * z3_ast) -> z3_ast
@@ -144,28 +143,28 @@ sig
   val Z3_apply_result_convert_model : (z3_context * z3_apply_result * int * z3_model) -> z3_model
   val Z3_func_interp_get_arity : (z3_context * z3_func_interp) -> int
   val Z3_get_context_assignment : (z3_context) -> z3_ast
-  val Z3_mk_string_symbol : (z3_context * z3_string) -> z3_symbol
+  val Z3_mk_string_symbol : (z3_context * string) -> z3_symbol
   val Z3_tactic_par_and_then : (z3_context * z3_tactic * z3_tactic) -> z3_tactic
-  val Z3_params_to_string : (z3_context * z3_params) -> z3_string
+  val Z3_params_to_string : (z3_context * z3_params) -> string
   val Z3_get_range : (z3_context * z3_func_decl) -> z3_sort
   val Z3_model_get_num_funcs : (z3_context * z3_model) -> int
   val Z3_get_error_code : (z3_context) -> z3_error_code
-  val Z3_get_numeral_decimal_string : (z3_context * z3_ast * int) -> z3_string
+  val Z3_get_numeral_decimal_string : (z3_context * z3_ast * int) -> string
   val Z3_mk_ext_rotate_right : (z3_context * z3_ast * z3_ast) -> z3_ast
   val Z3_mk_sign_ext : (z3_context * int * z3_ast) -> z3_ast
   val Z3_get_decl_symbol_parameter : (z3_context * z3_func_decl * int) -> z3_symbol
   val Z3_theory_is_value : (z3_theory * z3_ast) -> z3_bool
-  val Z3_get_probe_name : (z3_context * int) -> z3_string
+  val Z3_get_probe_name : (z3_context * int) -> string
   val Z3_tactic_par_or : (z3_context * int * MLton.Pointer.t) -> z3_tactic
   val Z3_mk_quantifier_const : (z3_context * z3_bool * int * int * MLton.Pointer.t * int * MLton.Pointer.t * z3_ast) -> z3_ast
   val Z3_del_constructor : (z3_context * z3_constructor) -> unit
-  val Z3_fixedpoint_from_string : (z3_context * z3_fixedpoint * z3_string) -> z3_ast_vector
+  val Z3_fixedpoint_from_string : (z3_context * z3_fixedpoint * string) -> z3_ast_vector
   val Z3_mk_full_set : (z3_context * z3_sort) -> z3_ast
   val Z3_get_decl_kind : (z3_context * z3_func_decl) -> z3_decl_kind
   val Z3_mk_forall_const : (z3_context * int * int * MLton.Pointer.t * int * MLton.Pointer.t * z3_ast) -> z3_ast
   val Z3_fixedpoint_set_predicate_representation : (z3_context * z3_fixedpoint * z3_func_decl * int * MLton.Pointer.t) -> unit
   val Z3_mk_ast_map : (z3_context) -> z3_ast_map
-  val Z3_probe_get_descr : (z3_context * z3_string) -> z3_string
+  val Z3_probe_get_descr : (z3_context * string) -> string
   val Z3_model_get_num_consts : (z3_context * z3_model) -> int
   val Z3_theory_get_num_elems : (z3_theory) -> int
   val Z3_fixedpoint_dec_ref : (z3_context * z3_fixedpoint) -> unit
@@ -191,7 +190,7 @@ sig
   val Z3_mk_bvredor : (z3_context * z3_ast) -> z3_ast
   val Z3_set_reset_callback : (z3_theory * MLton.Pointer.t) -> unit
   val Z3_check : (z3_context) -> z3_lbool
-  val Z3_set_param_value : (z3_config * z3_string * z3_string) -> unit
+  val Z3_set_param_value : (z3_config * string * string) -> unit
   val Z3_set_delete_callback : (z3_theory * MLton.Pointer.t) -> unit
   val Z3_model_get_const_decl : (z3_context * z3_model * int) -> z3_func_decl
   val Z3_get_model_num_funcs : (z3_context * z3_model) -> int
@@ -204,28 +203,28 @@ sig
   val Z3_solver_get_statistics : (z3_context * z3_solver) -> z3_stats
   val Z3_params_inc_ref : (z3_context * z3_params) -> unit
   val Z3_get_app_num_args : (z3_context * z3_app) -> int
-  val Z3_ast_to_string : (z3_context * z3_ast) -> z3_string
+  val Z3_ast_to_string : (z3_context * z3_ast) -> string
   val Z3_get_decl_ast_parameter : (z3_context * z3_func_decl * int) -> z3_ast
   val Z3_fixedpoint_get_rules : (z3_context * z3_fixedpoint) -> z3_ast_vector
-  val Z3_stats_get_double_value : (z3_context * z3_stats * int) -> double
+  val Z3_stats_get_double_value : (z3_context * z3_stats * int) -> real
   val Z3_simplify : (z3_context * z3_ast) -> z3_ast
   val Z3_set_pop_callback : (z3_theory * MLton.Pointer.t) -> unit
   val Z3_get_quantifier_no_pattern_ast : (z3_context * z3_ast * int) -> z3_ast
-  val Z3_probe_const : (z3_context * double) -> z3_probe
+  val Z3_probe_const : (z3_context * real) -> z3_probe
   val Z3_ast_map_find : (z3_context * z3_ast_map * z3_ast) -> z3_ast
   val Z3_get_decl_func_decl_parameter : (z3_context * z3_func_decl * int) -> z3_func_decl
   val Z3_fixedpoint_set_reduce_app_callback : (z3_context * z3_fixedpoint * MLton.Pointer.t) -> unit
-  val Z3_parse_smtlib2_file : (z3_context * z3_string * int * MLton.Pointer.t * MLton.Pointer.t * int * MLton.Pointer.t * MLton.Pointer.t) -> z3_ast
+  val Z3_parse_smtlib2_file : (z3_context * string * int * MLton.Pointer.t * MLton.Pointer.t * int * MLton.Pointer.t * MLton.Pointer.t) -> z3_ast
   val Z3_get_decl_num_parameters : (z3_context * z3_func_decl) -> int
   val Z3_get_model_func_decl : (z3_context * z3_model * int) -> z3_func_decl
   val Z3_mk_concat : (z3_context * z3_ast * z3_ast) -> z3_ast
   val Z3_mk_bvult : (z3_context * z3_ast * z3_ast) -> z3_ast
-  val Z3_benchmark_to_smtlib_string : (z3_context * z3_string * z3_string * z3_string * z3_string * int * MLton.Pointer.t * z3_ast) -> z3_string
+  val Z3_benchmark_to_smtlib_string : (z3_context * string * string * string * string * int * MLton.Pointer.t * z3_ast) -> string
   val Z3_solver_dec_ref : (z3_context * z3_solver) -> unit
   val Z3_mk_add : (z3_context * int * MLton.Pointer.t) -> z3_ast
-  val Z3_model_to_string : (z3_context * z3_model) -> z3_string
+  val Z3_model_to_string : (z3_context * z3_model) -> string
   val Z3_apply_result_inc_ref : (z3_context * z3_apply_result) -> unit
-  val Z3_enable_trace : (z3_string) -> unit
+  val Z3_enable_trace : (string) -> unit
   val Z3_goal_inconsistent : (z3_context * z3_goal) -> z3_bool
   val Z3_get_implied_equalities : (z3_context * z3_solver * int * MLton.Pointer.t * MLton.Pointer.t) -> z3_lbool
   val Z3_model_get_sort : (z3_context * z3_model * int) -> z3_sort
@@ -236,7 +235,7 @@ sig
   val Z3_mk_lt : (z3_context * z3_ast * z3_ast) -> z3_ast
   val Z3_solver_pop : (z3_context * z3_solver * int) -> unit
   val Z3_mk_empty_set : (z3_context * z3_sort) -> z3_ast
-  val Z3_mk_tactic : (z3_context * z3_string) -> z3_tactic
+  val Z3_mk_tactic : (z3_context * string) -> z3_tactic
   val Z3_is_numeral_ast : (z3_context * z3_ast) -> z3_bool
   val Z3_fixedpoint_get_statistics : (z3_context * z3_fixedpoint) -> z3_stats
   val Z3_solver_check : (z3_context * z3_solver) -> z3_lbool
@@ -255,7 +254,7 @@ sig
   val Z3_mk_exists : (z3_context * int * int * MLton.Pointer.t * int * MLton.Pointer.t * MLton.Pointer.t * z3_ast) -> z3_ast
   val Z3_get_quantifier_weight : (z3_context * z3_ast) -> int
   val Z3_mk_unsigned_int64 : (z3_context * int * z3_sort) -> z3_ast
-  val Z3_get_numeral_string : (z3_context * z3_ast) -> z3_string
+  val Z3_get_numeral_string : (z3_context * z3_ast) -> string
   val Z3_mk_bv2int : (z3_context * z3_ast * z3_bool) -> z3_ast
   val Z3_set_new_app_callback : (z3_theory * MLton.Pointer.t) -> unit
   val Z3_stats_dec_ref : (z3_context * z3_stats) -> unit
@@ -281,9 +280,9 @@ sig
   val Z3_pattern_to_ast : (z3_context * z3_pattern) -> z3_ast
   val Z3_tactic_apply : (z3_context * z3_tactic * z3_goal) -> z3_apply_result
   val Z3_push : (z3_context) -> unit
-  val Z3_params_set_double : (z3_context * z3_params * z3_symbol * double) -> unit
+  val Z3_params_set_double : (z3_context * z3_params * z3_symbol * real) -> unit
   val Z3_mk_bvurem : (z3_context * z3_ast * z3_ast) -> z3_ast
-  val Z3_get_decl_double_parameter : (z3_context * z3_func_decl * int) -> double
+  val Z3_get_decl_double_parameter : (z3_context * z3_func_decl * int) -> real
   val Z3_get_domain : (z3_context * z3_func_decl * int) -> z3_sort
   val Z3_mk_set_difference : (z3_context * z3_ast * z3_ast) -> z3_ast
   val Z3_model_dec_ref : (z3_context * z3_model) -> unit
@@ -291,30 +290,30 @@ sig
   val Z3_mk_bound : (z3_context * int * z3_sort) -> z3_ast
   val Z3_get_as_array_func_decl : (z3_context * z3_ast) -> z3_func_decl
   val Z3_disable_literal : (z3_context * z3_literals * int) -> unit
-  val Z3_disable_trace : (z3_string) -> unit
+  val Z3_disable_trace : (string) -> unit
   val Z3_mk_bvmul_no_overflow : (z3_context * z3_ast * z3_ast * z3_bool) -> z3_ast
   val Z3_get_symbol_kind : (z3_context * z3_symbol) -> z3_symbol_kind
   val Z3_eval_func_decl : (z3_context * z3_model * z3_func_decl * MLton.Pointer.t) -> z3_bool
   val Z3_func_entry_dec_ref : (z3_context * z3_func_entry) -> unit
-  val Z3_ast_vector_to_string : (z3_context * z3_ast_vector) -> z3_string
+  val Z3_ast_vector_to_string : (z3_context * z3_ast_vector) -> string
   val Z3_get_denominator : (z3_context * z3_ast) -> z3_ast
   val Z3_inc_ref : (z3_context * z3_ast) -> unit
   val Z3_get_app_decl : (z3_context * z3_app) -> z3_func_decl
-  val Z3_global_param_get : (z3_string * z3_string_ptr) -> z3_bool
+  val Z3_global_param_get : (string * z3_string_ptr) -> z3_bool
   val Z3_get_sort_kind : (z3_context * z3_sort) -> z3_sort_kind
   val Z3_simplify_get_param_descrs : (z3_context) -> z3_param_descrs
   val Z3_func_decl_to_ast : (z3_context * z3_func_decl) -> z3_ast
   val Z3_mk_bvredand : (z3_context * z3_ast) -> z3_ast
   val Z3_theory_get_eqc_next : (z3_theory * z3_ast) -> z3_ast
-  val Z3_stats_get_key : (z3_context * z3_stats * int) -> z3_string
+  val Z3_stats_get_key : (z3_context * z3_stats * int) -> string
   val Z3_set_reduce_distinct_callback : (z3_theory * MLton.Pointer.t) -> unit
   val Z3_get_smtlib_num_assumptions : (z3_context) -> int
-  val Z3_reset_memory : () -> unit
+  val Z3_reset_memory : unit -> unit
   val Z3_get_quantifier_num_bound : (z3_context * z3_ast) -> int
-  val Z3_mk_fresh_const : (z3_context * z3_string * z3_sort) -> z3_ast
+  val Z3_mk_fresh_const : (z3_context * string * z3_sort) -> z3_ast
   val Z3_solver_get_num_scopes : (z3_context * z3_solver) -> int
   val Z3_set_reduce_eq_callback : (z3_theory * MLton.Pointer.t) -> unit
-  val Z3_fixedpoint_get_help : (z3_context * z3_fixedpoint) -> z3_string
+  val Z3_fixedpoint_get_help : (z3_context * z3_fixedpoint) -> string
   val Z3_get_label_symbol : (z3_context * z3_literals * int) -> z3_symbol
   val Z3_func_entry_inc_ref : (z3_context * z3_func_entry) -> unit
   val Z3_del_config : (z3_config) -> unit
@@ -324,21 +323,21 @@ sig
   val Z3_params_validate : (z3_context * z3_params * z3_param_descrs) -> unit
   val Z3_substitute : (z3_context * z3_ast * int * MLton.Pointer.t * MLton.Pointer.t) -> z3_ast
   val Z3_get_decl_name : (z3_context * z3_func_decl) -> z3_symbol
-  val Z3_update_param_value : (z3_context * z3_string * z3_string) -> unit
+  val Z3_update_param_value : (z3_context * string * string) -> unit
   val Z3_toggle_warning_messages : (z3_bool) -> unit
   val Z3_theory_mk_func_decl : (z3_context * z3_theory * z3_symbol * int * MLton.Pointer.t * z3_sort) -> z3_func_decl
   val Z3_mk_solver_from_tactic : (z3_context * z3_tactic) -> z3_solver
   val Z3_stats_is_uint : (z3_context * z3_stats * int) -> z3_bool
-  val Z3_ast_map_to_string : (z3_context * z3_ast_map) -> z3_string
+  val Z3_ast_map_to_string : (z3_context * z3_ast_map) -> string
   val Z3_goal_inc_ref : (z3_context * z3_goal) -> unit
-  val Z3_tactic_get_descr : (z3_context * z3_string) -> z3_string
+  val Z3_tactic_get_descr : (z3_context * string) -> string
   val Z3_mk_const_array : (z3_context * z3_sort * z3_ast) -> z3_ast
-  val Z3_pattern_to_string : (z3_context * z3_pattern) -> z3_string
+  val Z3_pattern_to_string : (z3_context * z3_pattern) -> string
   val Z3_mk_uninterpreted_sort : (z3_context * z3_symbol) -> z3_sort
-  val Z3_probe_apply : (z3_context * z3_probe * z3_goal) -> double
+  val Z3_probe_apply : (z3_context * z3_probe * z3_goal) -> real
   val Z3_check_assumptions : (z3_context * int * MLton.Pointer.t * MLton.Pointer.t * MLton.Pointer.t * MLton.Pointer.t * MLton.Pointer.t) -> z3_lbool
   val Z3_persist_ast : (z3_context * z3_ast * int) -> unit
-  val Z3_fixedpoint_from_file : (z3_context * z3_fixedpoint * z3_string) -> z3_ast_vector
+  val Z3_fixedpoint_from_file : (z3_context * z3_fixedpoint * string) -> z3_ast_vector
   val Z3_mk_solver : (z3_context) -> z3_solver
   val Z3_param_descrs_size : (z3_context * z3_param_descrs) -> int
   val Z3_mk_bv_sort : (z3_context * int) -> z3_sort
@@ -351,7 +350,7 @@ sig
   val Z3_get_index_value : (z3_context * z3_ast) -> int
   val Z3_mk_exists_const : (z3_context * int * int * MLton.Pointer.t * int * MLton.Pointer.t * z3_ast) -> z3_ast
   val Z3_get_datatype_sort_recognizer : (z3_context * z3_sort * int) -> z3_func_decl
-  val Z3_parse_smtlib_file : (z3_context * z3_string * int * MLton.Pointer.t * MLton.Pointer.t * int * MLton.Pointer.t * MLton.Pointer.t) -> unit
+  val Z3_parse_smtlib_file : (z3_context * string * int * MLton.Pointer.t * MLton.Pointer.t * int * MLton.Pointer.t * MLton.Pointer.t) -> unit
   val Z3_check_and_get_model : (z3_context * MLton.Pointer.t) -> z3_lbool
   val Z3_solver_set_params : (z3_context * z3_solver * z3_params) -> unit
   val Z3_fixedpoint_update_rule : (z3_context * z3_fixedpoint * z3_ast * z3_symbol) -> unit
@@ -361,15 +360,15 @@ sig
   val Z3_del_context : (z3_context) -> unit
   val Z3_fixedpoint_query : (z3_context * z3_fixedpoint * z3_ast) -> z3_lbool
   val Z3_fixedpoint_pop : (z3_context * z3_fixedpoint) -> unit
-  val Z3_stats_to_string : (z3_context * z3_stats) -> z3_string
+  val Z3_stats_to_string : (z3_context * z3_stats) -> string
   val Z3_is_as_array : (z3_context * z3_ast) -> z3_bool
   val Z3_tactic_apply_ex : (z3_context * z3_tactic * z3_goal * z3_params) -> z3_apply_result
   val Z3_mk_repeat : (z3_context * int * z3_ast) -> z3_ast
   val Z3_mk_bvsmod : (z3_context * z3_ast * z3_ast) -> z3_ast
   val Z3_get_numeral_int : (z3_context * z3_ast * MLton.Pointer.t) -> z3_bool
-  val Z3_fixedpoint_to_string : (z3_context * z3_fixedpoint * int * MLton.Pointer.t) -> z3_string
+  val Z3_fixedpoint_to_string : (z3_context * z3_fixedpoint * int * MLton.Pointer.t) -> string
   val Z3_mk_implies : (z3_context * z3_ast * z3_ast) -> z3_ast
-  val Z3_get_error_msg : (z3_error_code) -> z3_string
+  val Z3_get_error_msg : (z3_error_code) -> string
   val Z3_set_ast_print_mode : (z3_context * z3_ast_print_mode) -> unit
   val Z3_get_version : (MLton.Pointer.t * MLton.Pointer.t * MLton.Pointer.t * MLton.Pointer.t) -> unit
   val Z3_probe_dec_ref : (z3_context * z3_probe) -> unit
@@ -385,7 +384,7 @@ sig
   val Z3_mk_real : (z3_context * int * int) -> z3_ast
   val Z3_fixedpoint_push : (z3_context * z3_fixedpoint) -> unit
   val Z3_mk_false : (z3_context) -> z3_ast
-  val Z3_parse_smtlib2_string : (z3_context * z3_string * int * MLton.Pointer.t * MLton.Pointer.t * int * MLton.Pointer.t * MLton.Pointer.t) -> z3_ast
+  val Z3_parse_smtlib2_string : (z3_context * string * int * MLton.Pointer.t * MLton.Pointer.t * int * MLton.Pointer.t * MLton.Pointer.t) -> z3_ast
   val Z3_mk_int2bv : (z3_context * int * z3_ast) -> z3_ast
   val Z3_get_arity : (z3_context * z3_func_decl) -> int
   val Z3_mk_iff : (z3_context * z3_ast * z3_ast) -> z3_ast
@@ -411,9 +410,9 @@ sig
   val Z3_solver_get_model : (z3_context * z3_solver) -> z3_model
   val Z3_model_get_const_interp : (z3_context * z3_model * z3_func_decl) -> z3_ast
   val Z3_del_constructor_list : (z3_context * z3_constructor_list) -> unit
-  val Z3_mk_probe : (z3_context * z3_string) -> z3_probe
+  val Z3_mk_probe : (z3_context * string) -> z3_probe
   val Z3_get_decl_int_parameter : (z3_context * z3_func_decl * int) -> int
-  val Z3_sort_to_string : (z3_context * z3_sort) -> z3_string
+  val Z3_sort_to_string : (z3_context * z3_sort) -> string
   val Z3_mk_bvneg : (z3_context * z3_ast) -> z3_ast
   val Z3_get_smtlib_decl : (z3_context * int) -> z3_func_decl
   val Z3_assert_cnstr : (z3_context * z3_ast) -> unit
@@ -424,7 +423,7 @@ sig
   val Z3_get_numeral_uint : (z3_context * z3_ast * MLton.Pointer.t) -> z3_bool
   val Z3_theory_get_elem : (z3_theory * int) -> z3_ast
   val Z3_get_ast_hash : (z3_context * z3_ast) -> int
-  val Z3_context_to_string : (z3_context) -> z3_string
+  val Z3_context_to_string : (z3_context) -> string
   val Z3_get_num_probes : (z3_context) -> int
   val Z3_mk_int_symbol : (z3_context * int) -> z3_symbol
   val Z3_tactic_using_params : (z3_context * z3_tactic * z3_params) -> z3_tactic
@@ -442,19 +441,19 @@ sig
   val Z3_mk_true : (z3_context) -> z3_ast
   val Z3_mk_ite : (z3_context * z3_ast * z3_ast * z3_ast) -> z3_ast
   val Z3_is_eq_ast : (z3_context * z3_ast * z3_ast) -> z3_bool
-  val Z3_solver_to_string : (z3_context * z3_solver) -> z3_string
-  val Z3_set_logic : (z3_context * z3_string) -> z3_bool
+  val Z3_solver_to_string : (z3_context * z3_solver) -> string
+  val Z3_set_logic : (z3_context * string) -> z3_bool
   val Z3_goal_is_decided_unsat : (z3_context * z3_goal) -> z3_bool
   val Z3_mk_bvsub_no_overflow : (z3_context * z3_ast * z3_ast) -> z3_ast
   val Z3_mk_select : (z3_context * z3_ast * z3_ast) -> z3_ast
   val Z3_block_literals : (z3_context * z3_literals) -> unit
-  val Z3_mk_fresh_func_decl : (z3_context * z3_string * int * MLton.Pointer.t * z3_sort) -> z3_func_decl
+  val Z3_mk_fresh_func_decl : (z3_context * string * int * MLton.Pointer.t * z3_sort) -> z3_func_decl
   val Z3_func_entry_get_arg : (z3_context * z3_func_entry * int) -> z3_ast
   val Z3_mk_const : (z3_context * z3_symbol * z3_sort) -> z3_ast
   val Z3_theory_assume_eq : (z3_theory * z3_ast * z3_ast) -> unit
   val Z3_mk_tuple_sort : (z3_context * z3_symbol * int * MLton.Pointer.t * MLton.Pointer.t * MLton.Pointer.t * MLton.Pointer.t) -> z3_sort
   val Z3_get_num_tactics : (z3_context) -> int
-  val Z3_global_param_set : (z3_string * z3_string) -> unit
+  val Z3_global_param_set : (string * string) -> unit
   val Z3_set_new_diseq_callback : (z3_theory * MLton.Pointer.t) -> unit
   val Z3_mk_quantifier_const_ex : (z3_context * z3_bool * int * z3_symbol * z3_symbol * int * MLton.Pointer.t * int * MLton.Pointer.t * int * MLton.Pointer.t * z3_ast) -> z3_ast
   val Z3_mk_bvshl : (z3_context * z3_ast * z3_ast) -> z3_ast
@@ -509,7 +508,7 @@ sig
   val Z3_get_relation_arity : (z3_context * z3_sort) -> int
   val Z3_mk_bvmul_no_underflow : (z3_context * z3_ast * z3_ast) -> z3_ast
   val Z3_get_relevant_literals : (z3_context) -> z3_literals
-  val Z3_get_symbol_string : (z3_context * z3_symbol) -> z3_string
+  val Z3_get_symbol_string : (z3_context * z3_symbol) -> string
   val Z3_mk_bvxnor : (z3_context * z3_ast * z3_ast) -> z3_ast
   val Z3_theory_get_parent : (z3_theory * z3_ast * int) -> z3_ast
   val Z3_ast_map_reset : (z3_context * z3_ast_map) -> unit
@@ -518,13 +517,13 @@ sig
   val Z3_tactic_fail_if : (z3_context * z3_probe) -> z3_tactic
   val Z3_mk_quantifier : (z3_context * z3_bool * int * int * MLton.Pointer.t * int * MLton.Pointer.t * MLton.Pointer.t * z3_ast) -> z3_ast
   val Z3_probe_gt : (z3_context * z3_probe * z3_probe) -> z3_probe
-  val Z3_get_tactic_name : (z3_context * int) -> z3_string
+  val Z3_get_tactic_name : (z3_context * int) -> string
   val Z3_get_tuple_sort_num_fields : (z3_context * z3_sort) -> int
   val Z3_get_relevant_labels : (z3_context) -> z3_literals
   val Z3_tactic_fail_if_not_decided : (z3_context) -> z3_tactic
   val Z3_solver_get_param_descrs : (z3_context * z3_solver) -> z3_param_descrs
-  val Z3_parse_smtlib_string : (z3_context * z3_string * int * MLton.Pointer.t * MLton.Pointer.t * int * MLton.Pointer.t * MLton.Pointer.t) -> unit
-  val Z3_mk_numeral : (z3_context * z3_string * z3_sort) -> z3_ast
+  val Z3_parse_smtlib_string : (z3_context * string * int * MLton.Pointer.t * MLton.Pointer.t * int * MLton.Pointer.t * MLton.Pointer.t) -> unit
+  val Z3_mk_numeral : (z3_context * string * z3_sort) -> z3_ast
   val Z3_set_push_callback : (z3_theory * MLton.Pointer.t) -> unit
   val Z3_fixedpoint_query_relations : (z3_context * z3_fixedpoint * int * MLton.Pointer.t) -> z3_lbool
   val Z3_get_domain_size : (z3_context * z3_func_decl) -> int
@@ -535,7 +534,7 @@ sig
   val Z3_ast_vector_size : (z3_context * z3_ast_vector) -> int
   val Z3_mk_func_decl : (z3_context * z3_symbol * int * MLton.Pointer.t * z3_sort) -> z3_func_decl
   val Z3_pop : (z3_context * int) -> unit
-  val Z3_get_param_value : (z3_context * z3_string * z3_string_ptr) -> z3_bool
+  val Z3_get_param_value : (z3_context * string * z3_string_ptr) -> z3_bool
   val Z3_substitute_vars : (z3_context * z3_ast * int * MLton.Pointer.t) -> z3_ast
   val Z3_fixedpoint_set_params : (z3_context * z3_fixedpoint * z3_params) -> unit
   val Z3_mk_extract : (z3_context * int * int * z3_ast) -> z3_ast
@@ -547,7 +546,7 @@ sig
   val Z3_mk_ext_rotate_left : (z3_context * z3_ast * z3_ast) -> z3_ast
   val Z3_mk_label : (z3_context * z3_symbol * z3_bool * z3_ast) -> z3_ast
   val Z3_mk_quantifier_ex : (z3_context * z3_bool * int * z3_symbol * z3_symbol * int * MLton.Pointer.t * int * MLton.Pointer.t * int * MLton.Pointer.t * MLton.Pointer.t * z3_ast) -> z3_ast
-  val Z3_append_log : (z3_string) -> unit
+  val Z3_append_log : (string) -> unit
   val Z3_global_param_reset_all : unit -> unit
   val Z3_mk_bvlshr : (z3_context * z3_ast * z3_ast) -> z3_ast
   val Z3_to_app : (z3_context * z3_ast) -> z3_app
@@ -564,7 +563,7 @@ sig
   val Z3_get_pattern_num_terms : (z3_context * z3_pattern) -> int
   val Z3_mk_solver_for_logic : (z3_context * z3_symbol) -> z3_solver
   val Z3_get_quantifier_bound_name : (z3_context * z3_ast * int) -> z3_symbol
-  val Z3_param_descrs_to_string : (z3_context * z3_param_descrs) -> z3_string
+  val Z3_param_descrs_to_string : (z3_context * z3_param_descrs) -> string
   val Z3_mk_is_int : (z3_context * z3_ast) -> z3_ast
   val Z3_simplify_ex : (z3_context * z3_ast * z3_params) -> z3_ast
   val Z3_goal_assert : (z3_context * z3_goal * z3_ast) -> unit
